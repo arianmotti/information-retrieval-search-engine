@@ -16,6 +16,7 @@ The user's query can be as follows:
 Single word: Just retrieve the list of documents from the dictionary.
 A few words: In this section, the list of files must be sorted by the amount of communication. Most relevant document, Sandy 
 It is to have all the words in the same order as the query. 
+--------------------------------------------------------------------------------------------
 phase 2:
 In this step, we want to expand the information retrieval model and represent the documents in vector
 To be able to rank search results based on their relevance to the user query. So that for

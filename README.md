@@ -1,5 +1,6 @@
 # IR
 information retrieval search engine
+---------------------------------------------------------------------------------------
 phase 1:
 The purpose of this project is to create a search engine to retrieve text documents so that the user asks himself 
 Enters and represents the relevant documents system.

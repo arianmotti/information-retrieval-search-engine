@@ -1,36 +1,112 @@
-# IR
-information retrieval search engine
----------------------------------------------------------------------------------------
-phase 1:
-The purpose of this project is to create a search engine to retrieve text documents so that the user asks himself 
-Enters and represents the relevant documents system.
- Preprocessing documents 
-• Token extraction 
-• Normalization of texts 
-• Remove repeating filled words 
-• Rooting 
+# 🔍 Information Retrieval Search Engine
 
-Creating a location index for responding to user query 
- In this section, by receiving the user's query, you should be able to binary the documents related to it. 
- restore . 
-The user's query can be as follows:
-Single word: Just retrieve the list of documents from the dictionary.
-A few words: In this section, the list of files must be sorted by the amount of communication. Most relevant document, Sandy 
-It is to have all the words in the same order as the query. 
---------------------------------------------------------------------------------------------
-phase 2:
-In this step, we want to expand the information retrieval model and represent the documents in vector
-To be able to rank search results based on their relevance to the user query. So that for
-Each document is extracted a numeric vector that represents that document in the vector space and these vectors are stored.
-To be. At the time of receiving the query, first construct the vector corresponding to that query in the same vector space and then with
-Using an appropriate similarity criterion, the numerical similarity of the query vector with the vector of all documents in the vector space is calculated
-Finally, the output results are sorted by similarity.
-In the above display, for a word that does not exist in a document, the weight is considered zero and from
-This direction will be zero for many elements of the calculated vectors. To save memory consumption instead
-Consider a complete numeric vector for each document, many of whose elements are zero
-Save the words in different documents in the same mailing lists. When answering a user query that in
-It is also explained that while searching for words in the mailing lists, you can find the weight of the words in the documents
-Fetch the different ones as well so that only the non-zero elements of the document vectors are stored and processed
-![image](https://user-images.githubusercontent.com/51990802/147371860-1910e93f-5357-4766-b9b6-2f1275c558a5.png)
-![image](https://user-images.githubusercontent.com/51990802/147371870-68b10ebb-848c-4752-b275-86810f0020fc.png)
+This project implements a **text-based search engine** that retrieves and ranks documents according to their relevance to a user’s query.  
+It performs standard **Information Retrieval (IR)** preprocessing steps and computes document similarity using **TF-IDF** weighting and **Cosine Similarity**.
 
+---
+
+## 🧠 Overview
+
+The goal of this project is to design a lightweight IR system capable of:
+- Extracting and preprocessing text documents
+- Building an inverted index for fast lookup
+- Calculating document vectors using **TF-IDF**
+- Computing similarity between a user query and documents using **cosine similarity**
+- Ranking and returning the most relevant results
+
+---
+
+## ⚙️ Preprocessing Pipeline
+
+The system performs multiple text normalization steps before vectorization:
+- **Token Extraction**
+- **Text Normalization** (lowercasing, punctuation removal)
+- **Stopword Removal**
+- **Rooting / Lemmatization**
+- **Frequency Counting**
+
+---
+
+## 🏗️ Architecture
+
+1. **Index Construction:**
+   - Each document is tokenized and converted into a numeric vector (TF-IDF representation).
+   - A dictionary of all unique terms is built for reference.
+
+2. **Query Processing:**
+   - The query is vectorized in the same TF-IDF space as the documents.
+   - For each document vector `D`, compute similarity with the query vector `Q` using **cosine similarity**.
+
+3. **Ranking:**
+   - Documents are sorted based on similarity scores in descending order.
+   - The system returns the top-k most relevant documents.
+
+---
+
+## 📐 Mathematical Formulation
+
+### TF-IDF
+```
+tfidf(t, d, D) = tf(t, d) × idf(t, D) = (1 + log(f_t,d)) × log(N / n_t)
+```
+
+### Cosine Similarity
+```
+similarity(a, b) = cos(θ) = (a · b) / (||a|| ||b||)
+```
+
+---
+
+## 🧩 Features
+
+- Indexes and searches through plain text files
+- Supports **single-word** and **multi-word queries**
+- Returns ranked results based on TF-IDF similarity
+- Built with Python for clarity and extendability
+- Modular design for easy integration with NLP pipelines
+
+---
+
+## 🛠️ Technologies Used
+
+| Component | Technology |
+|------------|-------------|
+| Programming Language | Python |
+| Libraries | NumPy, pandas, re |
+| Text Processing | Custom tokenizer & stopword remover |
+| Similarity Computation | Cosine Similarity |
+| Ranking | TF-IDF weighting |
+
+---
+
+## 🚀 How to Run
+
+```bash
+# Clone the repository
+git clone https://github.com/arianmotti/InformationRetrievalEngine.git
+cd InformationRetrievalEngine
+
+# Run the search engine
+python main.py
+```
+
+Then enter your query and view ranked results in the console.
+
+---
+
+## 📚 Example Usage
+
+```
+Query:  machine learning
+Top 3 relevant documents:
+1. document_05.txt  →  similarity = 0.84
+2. document_02.txt  →  similarity = 0.79
+3. document_07.txt  →  similarity = 0.73
+```
+
+---
+
+## 📄 License
+
+This project was developed as part of a university course in **Information Retrieval** at **Amirkabir University of Technology**.  
+© Mohammad Mottaghi, 2024
